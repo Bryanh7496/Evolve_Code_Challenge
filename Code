@@ -1,0 +1,188 @@
+/* Question 1 Answer.  I Created Sample Tables in order to better show the process.  The Code is wirtten in MySQL syntax. 
+   You can run all the lines of code for total completion (includes building of DB and tables and final answer table) lines 5-164 
+   or lines 107-164 for the specific answer to 1. */
+
+
+Drop database EVOLVE;
+Create database if not exists EVOLVE;
+
+Use EVOLVE;
+
+Create table Booking_Table
+(
+	Booking_ID int primary key,
+	Total_Amount int,
+  Booking_Type Enum('Evolve', 'Owner'),
+  Booking_Date date,
+  Check_In_Date date,
+  Property_ID int,
+  Traveler_Name char(50),
+  Booking_Status Enum('Active','Cancelled')
+  );
+
+Create table Properties_Table
+(
+	Property_ID int primary key,
+	State char(50),
+  Property_Start_Date Date,
+  Property_End_Date Date
+    );
+
+Create table Month_Table
+(
+  Start_of_Month Date,
+  End_of_Month Date
+    );
+
+Insert into Booking_Table (Booking_ID, Total_Amount, Booking_Type, Booking_Date, Check_In_Date, Property_ID, Traveler_Name, Booking_Status)
+Values (1, 1000, 'Evolve', '2017-01-01', '2018-03-01', 1, 'Wendy Baum', 'Active'),
+	     (2, 1000, 'Evolve', '2017-02-01', '2018-03-01', 2, 'Wendy Baum', 'Active'),
+	     (3, 1000, 'Evolve', '2017-03-01', '2018-03-01', 3, 'Wendy Baum', 'Active'),
+	     (4, 1000, 'Evolve', '2017-04-01', '2018-03-01', 4, 'Wendy Baum', 'Active'),
+       (5, 1000, 'Evolve', '2017-05-01', '2018-03-01', 5, 'Wendy Baum', 'Active'),
+	     (6, 1000, 'Evolve', '2017-06-01', '2018-03-01', 6, 'Wendy Baum', 'Active'),
+	     (7, 1000, 'Evolve', '2017-07-01', '2018-03-01', 7, 'Wendy Baum', 'Active'),
+	     (8, 1000, 'Evolve', '2017-08-01', '2018-03-01', 8, 'Wendy Baum', 'Active'),
+       (9, 1000, 'Evolve', '2017-09-01', '2018-03-01', 3, 'Wendy Baum', 'Active'),
+	     (10, 1000, 'Evolve', '2017-10-01', '2018-03-01', 10, 'Wendy Baum', 'Active'),
+	     (11, 1000, 'Evolve', '2017-11-01', '2018-03-01', 11, 'Wendy Baum', 'Active'),
+	     (12, 1000, 'Evolve', '2017-12-01', '2018-03-01', 2, 'Wendy Baum', 'Active'),
+       (13, 1000, 'Evolve', '2018-01-01', '2018-03-01', 3, 'Wendy Baum', 'Active'),
+	     (14, 1000, 'Evolve', '2018-02-01', '2018-03-01', 4, 'Wendy Baum', 'Active'),
+	     (15, 1000, 'Evolve', '2018-03-01', '2018-03-01', 5, 'Wendy Baum', 'Active'),
+	     (16, 1000, 'Evolve', '2018-04-01', '2018-03-01', 3, 'Wendy Baum', 'Active'),
+       (17, 1000, 'Evolve', '2018-05-01', '2018-03-01', 7, 'Wendy Baum', 'Active'),
+	     (18, 1000, 'Evolve', '2018-06-01', '2018-03-01', 8, 'Wendy Baum', 'Active'),
+       (19, 1000, 'Evolve', '2018-07-01', '2018-03-01', 9, 'Wendy Baum', 'Active'),
+	     (20, 1000, 'Evolve', '2018-08-01', '2018-03-01', 2, 'Wendy Baum', 'Active'),
+	     (21, 1000, 'Evolve', '2018-09-01', '2018-03-01', 2, 'Wendy Baum', 'Active'),
+	     (22, 1000, 'Evolve', '2018-10-01', '2018-03-01', 2, 'Wendy Baum', 'Active'),
+       (23, 1000, 'Evolve', '2018-11-01', '2018-03-01', 3, 'Wendy Baum', 'Active'),
+	     (24, 1000, 'Evolve', '2018-12-01', '2018-03-01', 4, 'Wendy Baum', 'Active'),
+       (25, 1000, 'Evolve', '2018-12-01', '2018-03-01', 12, 'Wendy Baum', 'Active'),
+	     (26, 1000, 'Evolve', '2018-09-01', '2018-03-01', 6, 'Wendy Baum', 'Active'),
+	     (27, 1000, 'Evolve', '2018-10-01', '2018-03-01', 7, 'Wendy Baum', 'Active'),
+       (28, 1000, 'Evolve', '2018-11-01', '2018-03-01', 8, 'Wendy Baum', 'Active'),
+	     (29, 1000, 'Evolve', '2018-12-01', '2018-03-01', 9, 'Wendy Baum', 'Active'),
+       (30, 1000, 'Evolve', '2018-12-01', '2018-03-01', 10, 'Wendy Baum', 'Active'),
+       (31, 1000, 'Evolve', '2018-12-01', '2018-03-01', 1, 'Wendy Baum', 'Active'),
+	     (32, 1000, 'Evolve', '2018-09-01', '2018-03-01', 2, 'Wendy Baum', 'Active'),
+	     (33, 1000, 'Evolve', '2018-10-01', '2018-03-01', 13, 'Wendy Baum', 'Active'),
+       (34, 1000, 'Evolve', '2018-11-01', '2018-03-01', 4, 'Wendy Baum', 'Active'),
+	     (35, 1000, 'Evolve', '2018-12-01', '2018-03-01', 5, 'Wendy Baum', 'Active'),
+       (36, 1000, 'Evolve', '2018-12-01', '2018-03-01', 6, 'Wendy Baum', 'Active');
+
+ 
+Insert into Properties_Table (Property_ID, State, Property_Start_Date)
+Values (1, 'Colorado', '2017-01-03'),
+	     (2, 'Colorado', '2017-02-03'),
+       (3, 'Colorado', '2017-03-03'),
+       (4, 'Colorado', '2017-04-03'),
+       (5, 'Colorado', '2017-05-03'),
+       (6, 'Colorado', '2017-06-03'),
+       (7, 'Colorado', '2017-07-03'),
+       (8, 'Colorado', '2017-08-03'),
+       (9, 'Colorado', '2017-09-03'),
+       (10, 'Colorado', '2017-10-03'),
+       (11, 'Colorado', '2017-11-03'),
+	     (12, 'Colorado', '2017-12-03'),
+       (13, 'Colorado', '2018-01-03'),
+       (14, 'Colorado', '2018-02-03'),
+       (15, 'Colorado', '2018-03-03'),
+       (16, 'Colorado', '2018-04-03'),
+       (17, 'Colorado', '2018-05-03'),
+       (18, 'Colorado', '2018-06-03'),
+       (19, 'Colorado', '2018-07-03'),
+       (20, 'Colorado', '2018-08-03'),
+       (21, 'Colorado', '2018-09-03'),
+       (22, 'Colorado', '2018-10-03'),
+       (23, 'Colorado', '2018-11-03'),
+       (24, 'Colorado', '2018-12-03');
+
+
+
+Insert into Month_Table (Start_of_Month, End_of_Month)
+value ('2018-01-01', '2018-01-31');
+
+Create Table BPM
+(
+	Year_Name INT,
+  Month_Name char(100),
+  Total_Bookings INT
+	);
+
+Create Table PPM
+(
+	Year_Name INT,
+  Month_Name char(100),
+  Total_Properties INT
+	);
+
+
+Insert Into BPM (Year_Name, Month_Name, Total_Bookings)
+Select year(Booking_Date) as Year_Name, monthname(Booking_Date) as Month_Name, Count(Booking_ID) as Total_Bookings
+From Booking_Table
+Where
+		Booking_Status = 'Active'
+Group by year(Booking_Date), monthname(Booking_Date);
+    
+
+Insert Into PPM (Year_Name, Month_Name, Total_Properties)
+Select year(Property_Start_Date) as Year_Name, monthname(Property_Start_Date) as Month_Name, Count(Property_ID) as Total_Properties
+From Properties_Table
+Where
+		((Property_Start_Date <= Property_End_Date or Property_End_Date is null or Property_End_Date > Property_Start_Date))
+Group by year(Property_Start_Date), monthname(Property_Start_Date);
+
+
+Create Table Bookings_Per_Properties_2017
+As
+Select BPM.Month_Name, (BPM.Total_Bookings/PPM.Total_Properties) as Bookings_Per_Property_2017
+From BPM
+Join PPM on BPM.Year_Name = PPM.Year_Name and BPM.Month_Name = PPM.Month_Name
+Where BPM.Year_Name = 2017
+Order by Month_Name;
+
+Create Table Bookings_Per_Properties_2018
+As
+Select BPM.Month_Name, (BPM.Total_Bookings/PPM.Total_Properties) as Bookings_Per_Property_2018
+From BPM
+Join PPM on BPM.Year_Name = PPM.Year_Name and BPM.Month_Name = PPM.Month_Name
+Where BPM.Year_Name = 2018
+Order by Month_Name;
+
+Create Table Question_1
+As
+Select 
+	Bookings_Per_Properties_2017.Month_Name, 
+	TRIM(TRAILING '.' FROM(CAST(TRIM(TRAILING '0' FROM Bookings_Per_Properties_2017.Bookings_Per_Property_2017) as char))) as Bookings_Per_Property_2017, 
+  TRIM(TRAILING '.' FROM(CAST(TRIM(TRAILING '0' FROM Bookings_Per_Properties_2018.Bookings_Per_Property_2018) as char))) as Bookings_Per_Property_2018,
+  Concat((TRIM(TRAILING '.' FROM(CAST(TRIM(TRAILING '0' FROM ((Bookings_Per_Properties_2018.Bookings_Per_Property_2018 - Bookings_Per_Properties_2017.Bookings_Per_Property_2017)/Bookings_Per_Properties_2017.Bookings_Per_Property_2017)) as char)))) * 100, '%') as YOY_Growth
+From Bookings_Per_Properties_2017
+Join Bookings_Per_Properties_2018 on Bookings_Per_Properties_2017.Month_Name = Bookings_Per_Properties_2018.Month_Name
+Order by Month_Name;
+
+Select * from Question_1;
+
+
+
+/* The answer to question 2.  Added in some select statements to show table evolution. Final select statement will output the answer. */
+
+
+Drop Table First_Property_Travelers;
+
+Create Table First_Property_Travelers
+as
+Select Distinct Properties_Table.Property_ID, Booking_Table.Traveler_Name, MIN(Booking_Table.Booking_Date) as First_Book
+From Properties_Table
+Join Booking_Table on Properties_Table.Property_ID = Booking_Table.Property_ID
+Group by Properties_Table.Property_ID, Booking_Table.Traveler_Name
+Order by Properties_Table.Property_ID ASC;
+
+select * from First_Property_Travelers;
+
+Alter Table First_Property_Travelers
+Drop Column First_Book;
+
+Select * from First_Property_Travelers;
+
